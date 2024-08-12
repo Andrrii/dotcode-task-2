@@ -1,6 +1,6 @@
 import {ButtonHTMLAttributes} from "react";
 import cls from "./AppButton.module.css";
-import {classNames} from "../../helpers/classnames";
+import {classNames} from "../../helpers/classNames";
 
 export type AppButtonVariant = "success" | "danger" | "warning";
 

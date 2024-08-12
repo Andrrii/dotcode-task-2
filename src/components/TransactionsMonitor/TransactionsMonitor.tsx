@@ -1,9 +1,9 @@
 import {useState} from "react";
-import useWS from "./useWS";
-import {WSMessage, SavedTransactionInfo} from "./types";
-import TransactionsInfo from "./TransactionsInfo";
+import useWS from "../../useWS";
+import {WSMessage, SavedTransactionInfo} from "../../types";
+import TransactionsInfo from "../../TransactionsInfo";
 import cls from "./TransactionsMonitor.module.css";
-import AppButton from "./components/AppButton/AppButton";
+import AppButton from "../AppButton/AppButton";
 
 function TransactionsMonitor() {
   const [transactions, setTransactions] = useState<SavedTransactionInfo[]>([]);
@@ -54,7 +54,7 @@ function TransactionsMonitor() {
           Reset
         </AppButton>
       </div>
-      <h2>Загальна сума: {totalAmount.toFixed(8)} BTC</h2>
+      <h2>Total amount: {totalAmount.toFixed(8)} BTC</h2>
       <TransactionsInfo transactions={transactions} />
     </main>
   );

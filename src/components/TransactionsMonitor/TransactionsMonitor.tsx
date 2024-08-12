@@ -1,9 +1,9 @@
 import {useState} from "react";
 import useWS from "../../useWS";
 import {WSMessage, SavedTransactionInfo} from "../../types";
-import TransactionsInfo from "../../TransactionsInfo";
-import cls from "./TransactionsMonitor.module.css";
 import AppButton from "../AppButton/AppButton";
+import TransactionsInfo from "../TransactionsInfo/TransactionsInfo";
+import cls from "./TransactionsMonitor.module.css";
 
 function TransactionsMonitor() {
   const [transactions, setTransactions] = useState<SavedTransactionInfo[]>([]);
@@ -16,11 +16,16 @@ function TransactionsMonitor() {
     if (message.op === "utx") {
       const amount =
         message.x.out.reduce((sum, output) => sum + output.value, 0) / 1e8; // Satoshi to BTC
+      const recipients = message.x.out.map((output) => output.addr);
+      const senders = message.x.inputs.map((input) => input.prev_out.addr);
+
       setTransactions((prevTransactions) => [
         ...prevTransactions,
         {
           hash: message.x.hash,
           amount,
+          recipients,
+          senders,
         },
       ]);
       setTotalAmount((prevTotal) => prevTotal + amount);

@@ -3,7 +3,7 @@ import useWS from "./useWS";
 import {WSMessage, SavedTransactionInfo} from "./types";
 import TransactionsInfo from "./TransactionsInfo";
 
-function App() {
+function TransactionsMonitor() {
   const [transactions, setTransactions] = useState<SavedTransactionInfo[]>([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
@@ -51,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default TransactionsMonitor;

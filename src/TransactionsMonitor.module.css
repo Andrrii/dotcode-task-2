@@ -2,3 +2,9 @@
   max-width: 120rem;
   margin: 20vh auto;
 }
+
+.control-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+}

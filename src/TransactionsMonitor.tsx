@@ -3,6 +3,7 @@ import useWS from "./useWS";
 import {WSMessage, SavedTransactionInfo} from "./types";
 import TransactionsInfo from "./TransactionsInfo";
 import cls from "./TransactionsMonitor.module.css";
+import AppButton from "./components/AppButton/AppButton";
 
 function TransactionsMonitor() {
   const [transactions, setTransactions] = useState<SavedTransactionInfo[]>([]);
@@ -34,17 +35,24 @@ function TransactionsMonitor() {
   return (
     <main className={cls["transactions-monitor"]}>
       <h1>Bitcoin Transactions</h1>
-      <div>
-        <button
+      <div className={cls["control-buttons"]}>
+        <AppButton
           onClick={() => establishWebSocketConnection(handleMessage)}
           disabled={isConnected}
+          variant="success"
         >
-          Запуск
-        </button>
-        <button onClick={disconnectWebSocket} disabled={!isConnected}>
-          Зупинка
-        </button>
-        <button onClick={resetTransactions}>Скинути</button>
+          Start
+        </AppButton>
+        <AppButton
+          onClick={disconnectWebSocket}
+          disabled={!isConnected}
+          variant="warning"
+        >
+          Pause
+        </AppButton>
+        <AppButton onClick={resetTransactions} variant="danger">
+          Reset
+        </AppButton>
       </div>
       <h2>Загальна сума: {totalAmount.toFixed(8)} BTC</h2>
       <TransactionsInfo transactions={transactions} />

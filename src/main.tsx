@@ -1,7 +1,7 @@
 import {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
 import TransactionsMonitor from "./TransactionsMonitor.tsx";
-import "./index.css";
+import "./main.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

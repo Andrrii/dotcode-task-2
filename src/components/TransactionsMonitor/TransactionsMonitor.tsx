@@ -54,7 +54,7 @@ function TransactionsMonitor() {
           Reset
         </AppButton>
       </div>
-      <h2>Total amount: {totalAmount.toFixed(8)} BTC</h2>
+      <h2>Total amount: {totalAmount.toFixed(7)} BTC</h2>
       <TransactionsInfo transactions={transactions} />
     </main>
   );

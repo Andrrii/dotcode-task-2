@@ -45,3 +45,7 @@ video {
 button {
   all: unset;
 }
+
+#root {
+  min-height: 100vh;
+}

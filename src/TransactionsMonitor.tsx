@@ -2,6 +2,7 @@ import {useState} from "react";
 import useWS from "./useWS";
 import {WSMessage, SavedTransactionInfo} from "./types";
 import TransactionsInfo from "./TransactionsInfo";
+import cls from "./TransactionsMonitor.module.css";
 
 function TransactionsMonitor() {
   const [transactions, setTransactions] = useState<SavedTransactionInfo[]>([]);
@@ -31,7 +32,7 @@ function TransactionsMonitor() {
   };
 
   return (
-    <div>
+    <main className={cls["transactions-monitor"]}>
       <h1>Bitcoin Transactions</h1>
       <div>
         <button
@@ -47,7 +48,7 @@ function TransactionsMonitor() {
       </div>
       <h2>Загальна сума: {totalAmount.toFixed(8)} BTC</h2>
       <TransactionsInfo transactions={transactions} />
-    </div>
+    </main>
   );
 }
 

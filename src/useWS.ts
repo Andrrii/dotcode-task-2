@@ -1,4 +1,5 @@
 import {useState, useRef, useEffect} from "react";
+import {WSMessage} from "./types";
 
 const useWS = () => {
   const ws = useRef<WebSocket | null>(null);
@@ -15,7 +16,7 @@ const useWS = () => {
   }, []);
 
   const establishWebSocketConnection = (
-    handleMessage?: (message: any) => void,
+    handleMessage?: (message: WSMessage) => void,
   ) => {
     if (ws.current) {
       ws.current.close();

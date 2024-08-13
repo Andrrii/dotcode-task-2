@@ -8,7 +8,7 @@
 }
 
 .table-header,
-.table__row {
+.table-row {
   display: contents;
 }
 
@@ -23,7 +23,7 @@
   border-bottom: 0.2rem solid var(--color-primary);
 }
 
-.table__row > div {
+.table-row > div {
   padding: 2rem 0;
   display: flex;
   flex-direction: column;

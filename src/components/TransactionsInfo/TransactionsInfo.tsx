@@ -1,3 +1,4 @@
+import {getFixedAmount} from "../../helpers";
 import {SavedTransactionInfo} from "../../types";
 import cls from "./TransactionsInfo.module.css";
 
@@ -14,18 +15,18 @@ const TransactionsInfo = ({transactions}: TransactionsInfoProps) => {
         <div>Sum</div>
       </section>
       {transactions.map((tx) => (
-        <section className={cls["table__row"]} key={tx.hash}>
+        <section className={cls["table-row"]} key={tx.hash}>
           <div>
-            {tx.senders.map((sender, index) => (
-              <p key={sender + index}>{sender}</p>
+            {tx.senders.map((sender) => (
+              <p key={sender}>{sender}</p>
             ))}
           </div>
           <div>
-            {tx.recipients.map((recipient, index) => (
-              <p key={recipient + index}>{recipient}</p>
+            {tx.recipients.map((recipient) => (
+              <p key={recipient}>{recipient}</p>
             ))}
           </div>
-          <div>{tx.amount.toFixed(8)} BTC</div>
+          <div>{getFixedAmount(tx.amount)} BTC</div>
         </section>
       ))}
     </div>

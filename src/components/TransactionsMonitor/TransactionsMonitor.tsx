@@ -4,6 +4,7 @@ import {WSMessage, SavedTransactionInfo} from "../../types";
 import AppButton from "../AppButton/AppButton";
 import TransactionsInfo from "../TransactionsInfo/TransactionsInfo";
 import cls from "./TransactionsMonitor.module.css";
+import {getFixedAmount} from "../../helpers";
 
 function TransactionsMonitor() {
   const [transactions, setTransactions] = useState<SavedTransactionInfo[]>([]);
@@ -59,7 +60,7 @@ function TransactionsMonitor() {
           Reset
         </AppButton>
       </div>
-      <h2>Total amount: {totalAmount.toFixed(7)} BTC</h2>
+      <h2>Total amount: {getFixedAmount(totalAmount)} BTC</h2>
       <TransactionsInfo transactions={transactions} />
     </main>
   );

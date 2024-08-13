@@ -1,7 +1,10 @@
 import {useState, useRef, useEffect} from "react";
-import {WSMessage} from "./types";
+import {WSMessage} from "../types";
 
-const useWS = () => {
+const BLOCKCHAIN_INFO_WS_URL = "wss://ws.blockchain.info/inv";
+const SUBSCRIBE_MESSAGE = JSON.stringify({op: "unconfirmed_sub"});
+
+const useTransactionsData = () => {
   const ws = useRef<WebSocket | null>(null);
 
   const [isConnected, setIsConnected] = useState(false);
@@ -22,17 +25,17 @@ const useWS = () => {
       ws.current.close();
     }
 
-    ws.current = new WebSocket("wss://ws.blockchain.info/inv");
+    ws.current = new WebSocket(BLOCKCHAIN_INFO_WS_URL);
 
     ws.current.onopen = () => {
       console.log("WebSocket connected");
-      ws.current?.send(JSON.stringify({op: "unconfirmed_sub"}));
+      ws.current?.send(SUBSCRIBE_MESSAGE);
       setIsConnected(true);
     };
 
     ws.current.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      console.log(message);
+      console.log("WebSocket message:", message.op);
       handleMessage?.(message);
     };
 
@@ -56,4 +59,4 @@ const useWS = () => {
   return {isConnected, disconnectWebSocket, establishWebSocketConnection};
 };
 
-export default useWS;
+export default useTransactionsData;

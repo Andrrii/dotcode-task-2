@@ -1,22 +1,25 @@
 import {useState} from "react";
-import useWS from "../../useWS";
+import useTransactionsData from "../../hooks/useTransactionsData";
 import {WSMessage, SavedTransactionInfo} from "../../types";
 import AppButton from "../AppButton/AppButton";
 import TransactionsInfo from "../TransactionsInfo/TransactionsInfo";
 import cls from "./TransactionsMonitor.module.css";
 import {getFixedAmount} from "../../helpers";
 
+const UNCONFIRMED_TRANSACTIONS = "utx";
+
 function TransactionsMonitor() {
   const [transactions, setTransactions] = useState<SavedTransactionInfo[]>([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
   const {isConnected, disconnectWebSocket, establishWebSocketConnection} =
-    useWS();
+    useTransactionsData();
 
   const handleMessage = (message: WSMessage) => {
-    if (message.op === "utx") {
+    if (message.op === UNCONFIRMED_TRANSACTIONS) {
       const amount =
         message.x.out.reduce((sum, output) => sum + output.value, 0) / 1e8; // Satoshi to BTC
+
       const recipients = message.x.out.map((output) => output.addr);
       const senders = message.x.inputs.map((input) => input.prev_out.addr);
 

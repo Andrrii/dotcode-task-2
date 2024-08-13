@@ -17,13 +17,13 @@ const TransactionsInfo = ({transactions}: TransactionsInfoProps) => {
       {transactions.map((tx) => (
         <section className={cls["table-row"]} key={tx.hash}>
           <div>
-            {tx.senders.map((sender) => (
-              <p key={sender}>{sender}</p>
+            {tx.senders.map((sender, ind) => (
+              <p key={sender + ind}>{sender}</p>
             ))}
           </div>
           <div>
-            {tx.recipients.map((recipient) => (
-              <p key={recipient}>{recipient}</p>
+            {tx.recipients.map((recipient, ind) => (
+              <p key={recipient + ind}>{recipient}</p>
             ))}
           </div>
           <div>{getFixedAmount(tx.amount)} BTC</div>
